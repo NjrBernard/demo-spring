@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Ville {
     private int id;
     private String nom;
-    private String population;
+    private int population;
 
     private static int compteur = 0;
 
-    public Ville(String nom, String population) {
+    public Ville(String nom, int population) {
         this.id = compteur++;
         this.nom = nom;
         this.population = population;
@@ -27,11 +27,11 @@ public class Ville {
         this.nom = nom;
     }
 
-    public String getPopulation() {
+    public int getPopulation() {
         return population;
     }
 
-    public void setPopulation(String population) {
+    public void setPopulation(int population) {
         this.population = population;
     }
 
