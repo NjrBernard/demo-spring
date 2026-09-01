@@ -33,6 +33,18 @@ public class VilleControleur {
         return ResponseEntity.badRequest().body("Ville pas trouvée");
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<String> ajouterVille(@RequestBody Ville ville) {
+        List<Ville> villes = villeService.listeVilles();
+        for  (Ville v : villes) {
+            if (v.getNom().equals(ville.getNom())) {
+                return ResponseEntity.badRequest().body("La ville existe déjà");
+            }
+        }
+        villes.add(ville);
+        return ResponseEntity.ok("La ville " + ville.getNom() + " a été ajoutée avec succès");
+    }
+
     @PutMapping("/put/{id}")
     public ResponseEntity<String> modifierVilleParId(@RequestBody Ville ville, @PathVariable int id) {
         List<Ville> villes = villeService.listeVilles();
