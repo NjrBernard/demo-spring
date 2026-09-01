@@ -1,5 +1,7 @@
 package fr.diginamic.demo_spring.controleurs;
 
+import fr.diginamic.demo_spring.services.HelloService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hello")
 public class HelloControleur {
 
+    @Autowired
+    private HelloService helloService;
+
     @GetMapping
     public String direHello(){
-        return "Hello";
+        return helloService.salutations();
     }
 }
