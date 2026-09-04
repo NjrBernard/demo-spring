@@ -5,11 +5,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.util.Objects;
-
 
 @Entity
-public class Ville {
+public class VilleDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,13 +19,14 @@ public class Ville {
     @Min(value = 1, message = "La population doit être un entier positif" )
     private int population;
 
-    @ManyToOne
-    @JoinColumn(name="Id_Departement")
-    private Departement departement;
+    @Size(min = 2, max = 3)
+    private String codeDepartement;
 
-    public Ville() {}
+    private Integer idDepartement;
 
-    public Ville(String nom, int population) {
+    public VilleDto() {}
+
+    public VilleDto(String nom, int population) {
         this.nom = nom;
         this.population = population;
     }
@@ -52,12 +51,20 @@ public class Ville {
         this.population = population;
     }
 
-    public Departement getDepartement() {
-        return departement;
+    public String getCodeDepartement() {
+        return codeDepartement;
     }
 
-    public void setDepartement(Departement departement) {
-        this.departement = departement;
+    public void setCodeDepartement(String codeDepartement) {
+        this.codeDepartement = codeDepartement;
+    }
+
+    public Integer getIdDepartement() {
+        return idDepartement;
+    }
+
+    public void setIdDepartement(Integer idDepartement) {
+        this.idDepartement = idDepartement;
     }
 
     @Override
